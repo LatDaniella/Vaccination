@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
-class VaccinationAdapter(var dataSet: List<Vaccination>) :
+class VaccinationAdapter(var dataSet: List<VaccinationInfo>) :
     RecyclerView.Adapter<VaccinationAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -53,7 +53,7 @@ class VaccinationAdapter(var dataSet: List<Vaccination>) :
                 val context = viewHolder.layout.context
                 //make the intent with context we got
                 val heroDetailIntent = Intent(context, VaccinationDetailActivity::class.java).apply {
-                    putExtra(VaccinationDetailActivity.EXTRA_COUNTRY, vaccine)
+                    putExtra(VaccinationDetailActivity.EXTRA_VACCINATION, vaccine)
                 }
                 context.startActivity(heroDetailIntent)
             }
