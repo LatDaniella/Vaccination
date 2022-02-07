@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/name_menu"
+        android:title="Name" />
+    <item
+        android:id="@+id/totalVaccinated_menu"
+        android:title="Total Vaccinated" />
+    <item
+        android:id="@+id/largestIncrease_menu"
+        android:title="Largest Increase In 10 Days" />
+</menu>

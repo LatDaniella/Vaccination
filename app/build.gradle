@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.vaccination"
-        minSdk 23
+        minSdk 21
         //put to 21 when using the tablet and 23 when using the computer
         targetSdk 31
         versionCode 1

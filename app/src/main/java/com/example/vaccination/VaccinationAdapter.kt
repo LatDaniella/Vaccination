@@ -20,8 +20,8 @@ class VaccinationAdapter(var dataSet: List<VaccinationInfo>) :
         init {
             // Define click listener for the ViewHolder's View.
             // view.findViewById looks for the id in the ViewHolder Class
-            textViewCountry = view.findViewById(R.id.textView_detail_countryName)
-            textViewNumOfVaccinations = view.findViewById(R.id.textView_detail_numOfVacctinations)
+            textViewCountry = view.findViewById(R.id.textView_vaccinationItem_country)
+            textViewNumOfVaccinations = view.findViewById(R.id.textView_vaccinationItem_timeline)
             layout = view.findViewById(R.id.layout_vaccinationItem)
 
         }
@@ -52,10 +52,10 @@ class VaccinationAdapter(var dataSet: List<VaccinationInfo>) :
                 //get context from something in viewHolder
                 val context = viewHolder.layout.context
                 //make the intent with context we got
-                val heroDetailIntent = Intent(context, VaccinationDetailActivity::class.java).apply {
+                val vaccinationDetailIntent = Intent(context, VaccinationDetailActivity::class.java).apply {
                     putExtra(VaccinationDetailActivity.EXTRA_VACCINATION, vaccine)
                 }
-                context.startActivity(heroDetailIntent)
+                context.startActivity(vaccinationDetailIntent)
             }
 
     }
