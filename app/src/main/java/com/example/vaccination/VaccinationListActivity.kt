@@ -90,6 +90,28 @@ class VaccinationListActivity : AppCompatActivity() {
         }
         )
 
+        var worldwideList = listOf<VaccinationInfo>()
+        val worldwideApi = RetrofitHelper.getInstance().create(Covid19Service::class.java)
+        val worldwideCall = worldwideApi.getWorldwide(10)
+
+        worldwideCall.enqueue(object : Callback<List<VaccinationInfo>> {
+            override fun onResponse(
+                call: Call<List<VaccinationInfo>>,
+                response: Response<List<VaccinationInfo>>
+            ) {
+                Log.d(TAG, "OnResponse: ${response.body()}")
+                worldwideList = response.body() ?: listOf<VaccinationInfo>()
+                adapter = VaccinationAdapter(worldwideList)
+                binding.recyclerViewVaccinationItem.adapter = adapter
+                binding.recyclerViewVaccinationItem.layoutManager = LinearLayoutManager(this@VaccinationListActivity)
+            }
+
+            override fun onFailure(call: Call<List<VaccinationInfo>>, t: Throwable) {
+                Log.d(TAG, "onFailure :${t.message}")
+            }
+        }
+        )
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -111,7 +133,7 @@ class VaccinationListActivity : AppCompatActivity() {
 
             R.id.totalVaccinated_menu -> {
                 Toast.makeText(this, "Hi, you clicked on total vaccinated menu", Toast.LENGTH_SHORT).show()
-                adapter.dataSet = adapter.dataSet.sortedBy{
+                adapter.dataSet = adapter.dataSet.sortedByDescending{
                     val key = it.timeline.lastKey()
                     it.timeline[key]
                 }
